@@ -1,0 +1,269 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/fullpagelayout.html}">
+
+<head>
+	<title>acheter home</title>
+</head>
+
+<!-- marketplace content with search bar -->
+<th:block layout:fragment="searchheader">
+	<div id="hero-area">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-9 col-xs-12 text-center">
+					<div class="contents">
+						<h1 class="head-title">Welcome to The Largest <span class="year">Marketplace</span></h1>
+						<p>Buy and sell everything from used cars to mobile phones and computers, or search for
+							property, jobs and more</p>
+						<div class="search-bar">
+							<div class="search-inner">
+								<form class="search-form">
+									<div class="form-group">
+										<input type="text" name="customword" class="form-control"
+											placeholder="What are you looking for?">
+									</div>
+									<div class="form-group inputwithicon">
+										<div class="select">
+											<select>
+												<option value="none">Locations</option>
+												<option value="none">New York</option>
+												<option value="none">California</option>
+												<option value="none">Washington</option>
+												<option value="none">Birmingham</option>
+												<option value="none">Chicago</option>
+												<option value="none">Phoenix</option>
+											</select>
+										</div>
+										<i class="lni-target"></i>
+									</div>
+									<div class="form-group inputwithicon">
+										<div class="select">
+											<select>
+												<option value="none">Select Catagory</option>
+												<option value="none">Jobs</option>
+												<option value="none">Electronics</option>
+												<option value="none">Mobile</option>
+												<option value="none">Training</option>
+												<option value="none">Pets</option>
+												<option value="none">Real Estate</option>
+												<option value="none">Services</option>
+												<option value="none">Training</option>
+												<option value="none">Vehicles</option>
+											</select>
+										</div>
+										<i class="lni-menu"></i>
+									</div>
+									<button class="btn btn-common" type="button"><i class="lni-search"></i> Search
+										Now</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+
+<th:block layout:fragment="breadcrum">
+	<section id="categories">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-10 col-md-12 col-xs-12">
+					<div id="categories-icon-slider" class="categories-wrapper owl-carousel owl-theme">
+						<div class="item"  th:each="category:${topCategories}">
+							<a href="category.html">
+								<div class="category-icon-item">
+									<div class="icon-box">
+										<div class="icon">
+											<img th:src="@{'~/image/' + ${category.categoryImageId}}" alt="">
+										</div>
+										<h4 th:text="${category.categoryName}">Bicycle</h4>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</th:block>
+
+<th:block layout:fragment="pagecontent">
+	<section class="featured section-padding">
+		<div class="container">
+			<h1 class="section-title">Latest Classifieds</h1>
+			<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4" th:each="classified:${recentClassifieds}">
+					<div class="featured-box">
+						<figure>
+							<div class="icon">
+								<span class="bg-green"><i class="lni-heart"></i></span>
+								<span><i class="lni-bookmark"></i></span>
+							</div>
+							<a href="#"><img class="img-fluid" th:src="@{'~/image/'+${classified.postImages[0].imageId}}" alt=""></a>
+						</figure>
+						<div class="feature-content">
+							<div class="product">
+								<a href="#" th:text="${classified.category.categoryName}">category name </a>
+							</div>
+							<h4><a href="#" th:text="${classified.title}">title</a></h4>							
+							<p class="dsc" th:text="${classified.description}">Description</p>
+							<div class="listing-bottom">
+								<h3 class="price float-left" th:text="${classified.price}">$249.00</h3>
+								<a href="#" class="btn btn-common float-right">View Details</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="featured-lis section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 wow fadeIn" data-wow-delay="0.5s">
+					<h3 class="section-title">Exchange Products</h3>
+					<div id="new-products" class="owl-carousel owl-theme">
+						<div class="item" th:each="exchangeProduct:${exchangeProducts}">
+							<div class="product-item">
+								<div class="carousel-thumb">
+									<img class="img-fluid" th:src="@{'/image/'+${exchangeProduct.customerProduct.productImages[0]}}" alt="">
+									<div class="overlay">
+										<div>
+											<a class="btn btn-common" href="#">View Details</a>
+										</div>
+									</div>
+									<div class="btn-product bg-sale">
+										<a href="#">Sale</a>
+									</div>
+									<span class="price" th:text="${exchangeProduct.customerProduct.price}">price</span>
+								</div>
+								<div class="product-content">
+									<h3 class="product-title"><a href="#" th:text="${exchangeProduct.customerProduct.productName}">title</a></h3>
+									<span th:text="${exchangeProduct.customerProduct.categoryName}">Category</span>
+									<div class="icon">
+										<span><i class="lni-bookmark"></i></span>
+										<span><i class="lni-heart"></i></span>
+									</div>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="works section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h3 class="section-title">How It Works?</h3>
+				</div>
+				<div class="col-lg-4 col-md-4 col-xs-12">
+					<div class="works-item">
+						<div class="icon-box">
+							<i class="lni-users"></i>
+						</div>
+						<p>Create an Account</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-xs-12">
+					<div class="works-item">
+						<div class="icon-box">
+							<i class="lni-bookmark-alt"></i>
+						</div>
+						<p>Post Free Ad</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-xs-12">
+					<div class="works-item">
+						<div class="icon-box">
+							<i class="lni-thumbs-up"></i>
+						</div>
+						<p>Deal Done</p>
+					</div>
+				</div>
+				<hr class="works-line">
+			</div>
+		</div>
+	</section>
+
+
+	
+
+
+	<section id="blog" class="section-padding">
+
+		<div class="container">
+			<h2 class="section-title">
+				Direct Sell/Buy
+			</h2>
+			<div class="row">
+				<div class="col-lg-4 col-md-6 col-xs-12 blog-item" th:each="directSell:${popularDirectSellPosts}">
+
+					<div class="blog-item-wrapper">
+						<div class="blog-item-img">
+							<a href="single-post.html">
+								<img th:src="@{'/image/'+${directSell.postImages[0].imageId}}" alt="">
+							</a>
+						</div>
+						<div class="blog-item-text">
+							<!--<div class="meta-tags">
+								<span class="user float-left"><a href="#"><i class="lni-user"></i> Posted By
+										Admin</a></span>
+								<span class="date float-right"><i class="lni-calendar"></i> 24 May, 2018</span>
+							</div>-->
+							<h3>
+								<a href="#" th:text="${directSell.title}">Title</a>
+							</h3>
+							<p th:text="${directSell.description}">description</p>
+							<a href="single-post.html" class="btn btn-common">Read More</a>
+						</div>
+					</div>
+
+				</div>
+			</div>	
+		</div>
+	</section>
+
+
+	<section class="subscribes section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div class="subscribes-inner">
+						<div class="icon">
+							<i class="lni-pointer"></i>
+						</div>
+						<div class="sub-text">
+							<h3>Subscribe to Newsletter</h3>
+							<p>and receive new ads in inbox</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<form>
+						<div class="subscribe">
+							<input class="form-control" name="EMAIL" placeholder="Enter your Email" required=""
+								type="email">
+							<button class="btn btn-common" type="submit">Subscribe</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</th:block>
+
+
+
+</html>
