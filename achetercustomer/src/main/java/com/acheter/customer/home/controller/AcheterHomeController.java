@@ -10,8 +10,11 @@ public class AcheterHomeController {
 
 	@RequestMapping("/acheter-home")
 	public String showHomePage(Model model) {
-
 		return "acheter-home";
 	}
 
+	@RequestMapping("/register")
+	public String showRegisterPage() {
+		return "register";
+	}
 }
