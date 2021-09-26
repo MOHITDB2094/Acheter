@@ -3,6 +3,7 @@ package com.acheter.accountservice.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,18 +27,19 @@ public class System_user implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "system_user_id")
 	private int system_user_id;
-	
+	@Column(name = "email_address")
 	private String email_address;
-	
+	@Column(name = "mobile_no")
 	private String mobile_no;
-	
+	@Column(name = "first_nm")
 	private String first_nm;
-	
+	@Column(name = "last_nm")
 	private String last_nm;
-	
+	@Column(name = "password")
 	private String password;
-	
+	@Column(name = "display_nm")
 	private String display_nm;
 	
 	private String email_verification_code;
@@ -50,7 +52,7 @@ public class System_user implements Serializable{
 	
 	private String status;
 	
-	private Date created_id;
+	private Date created_dt;
 	
 	private String created_by;
 	
@@ -60,6 +62,6 @@ public class System_user implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "user_role_id")
-	private int user_role_id;
+	private UserRole user_role;
 	
 }
